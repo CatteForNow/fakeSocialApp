@@ -1,15 +1,19 @@
+# Librerias
+import random
+from random import randint, choice
+
 # Variables
 friends = []
 pings   = 0
 
 # Constantes
-devices = ["Computer", "Cellphone", "Tablet"]
-status  = ["Online", "Idle", "Do Not Disturb", "Offline"]
 sex     = ["Male", "Female"]
+status  = ["Online", "Idle", "Do Not Disturb", "Offline"]
+devices = ["Computer", "Cellphone", "Tablet"]
 
 # Creacion de amigos
 class Friends():
-    def __init__(self, name: str, age: int, sex: str, hobby: str) -> None:
+    def __init__(self, name: str, age: int, sex, hobby: str) -> None:
         self.name = name
         self.age = age
         self.sex = sex
@@ -22,16 +26,33 @@ class Friends():
             counter += 1
         return counter
 
+    def create_random_friend():
+        return Friends("catty", randint(14, 20), random.choice(sex), "asd")
+
+    def __str__(self) -> str:
+        return str(self.__dict__)
+
+print(Friends.create_random_friend())
+
 # Crear tu usuario
-my_username = input("~ Username \n")
-my_age =      input("\n~ Age \n")
-my_sex =      input("\n~ Sex \n")
-my_hobby =    input("\n~ Hobby \n")
-my_status =   input("\n~ Status \n")
+class User:
+    def __init__(self, name: str, age: int, sex: list[str], hobby, status, device) -> None:
+        self.name = name
+        self.age = age
+        self.sex = sex
+        self.hobby = hobby
+        self.status = status
+        self.device = device
+
+    def __str__(self) -> str:
+        return str(self.__dict__)
+
+my_user = User("Catte", 15, sex[0], "Listen to music", status[0], devices[0])
+print(my_user)
 
 # Menu principal
 while True:
     print(f"""
-    Connected as {my_username}    Your current status is {my_status}
+    Connected as {my_user.name}    Your current status is {my_user.status}
     Friends {Friends.show_friends()}""")
     input()
